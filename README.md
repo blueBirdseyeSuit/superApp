@@ -1,5 +1,3 @@
-
-
 # SuperApp
 
 **SuperApp** is a project developed for the Back End Final Exam.
