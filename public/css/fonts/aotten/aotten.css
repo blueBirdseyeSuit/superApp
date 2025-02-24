@@ -1,0 +1,10 @@
+/* aotten */
+@font-face {
+	font-family: Aotten;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("Aotten"), local("AottenRegular"), url(aotten.woff2) format("woff2");
+	font-display: auto;
+}
+

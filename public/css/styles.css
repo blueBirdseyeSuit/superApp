@@ -1,0 +1,11 @@
+@import url("./fonts/aotten/aotten.css");
+@import url("./fonts/virust/virust.css");
+
+.font-main {
+    font-family: 'VIRUST';
+    font-feature-settings: 'dlig' 1, 'calt' 1, 'hlig' 1, 'liga' 1;
+}
+.font-second {
+    font-family: 'Aotten';
+    font-feature-settings: 'dlig' 1, 'calt' 1, 'hlig' 1, 'liga' 1;
+}

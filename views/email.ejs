@@ -1,0 +1,85 @@
+<div
+    class="flex min-h-screen flex-col justify-center items-center px-4 py-8 bg-gradient-to-br from-indigo-50 to-purple-50"
+>
+    <div class="w-full max-w-lg bg-white rounded-lg shadow-xl p-8">
+        <h1
+            class="text-3xl sm:text-4xl mb-8 font-main text-center text-indigo-600"
+        >
+            Send Email
+        </h1>
+        <form id="email-form" class="space-y-6 font-second">
+            <div>
+                <label
+                    for="to"
+                    class="block mb-2 text-md font-bold text-gray-700"
+                    >To:</label
+                >
+                <input
+                    type="email"
+                    id="to"
+                    name="to"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                    placeholder="recipient@example.com"
+                />
+            </div>
+            <div>
+                <label
+                    for="subject"
+                    class="block mb-2 text-md font-bold text-gray-700"
+                    >Subject:</label
+                >
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                    placeholder="Enter email subject"
+                />
+            </div>
+            <div>
+                <label
+                    for="text"
+                    class="block mb-2 text-md font-bold text-gray-700"
+                    >Text:</label
+                >
+                <textarea
+                    id="text"
+                    name="text"
+                    required
+                    rows="4"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                    placeholder="Enter your message here"
+                ></textarea>
+            </div>
+            <div>
+                <label
+                    for="html"
+                    class="block mb-2 text-md font-bold text-gray-700"
+                    >HTML (optional):</label
+                >
+                <textarea
+                    id="html"
+                    name="html"
+                    rows="4"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                    placeholder="Enter HTML content (optional)"
+                ></textarea>
+            </div>
+            <p class="text-md text-gray-600 bg-yellow-100 p-3 rounded-md">
+                <span class="text-yellow-700 font-bold">Note:</span> If you
+                include HTML, the text content will be ignored.
+            </p>
+            <button
+                type="submit"
+                class="w-full bg-indigo-600 text-white px-4 py-3 rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-lg font-semibold"
+            >
+                Send Email
+            </button>
+        </form>
+        <div id="message" class="mt-6 text-center text-lg"></div>
+    </div>
+</div>
+
+<script src="/js/email.js"></script>

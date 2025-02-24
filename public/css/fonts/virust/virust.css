@@ -1,0 +1,10 @@
+/* virust */
+@font-face {
+	font-family: VIRUST;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("VIRUST"), local("VIRUSTRegular"), url(virust.woff2) format("woff2");
+	font-display: auto;
+}
+

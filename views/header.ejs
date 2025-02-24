@@ -1,0 +1,58 @@
+<header class="bg-indigo-600 text-white p-4">
+    <div
+        class="container mx-auto flex flex-col md:flex-row justify-between items-center"
+    >
+        <!-- Central part (moved to top on mobile) -->
+        <div
+            class="w-full md:w-1/3 flex justify-center mb-4 md:mb-0 order-1 md:order-2"
+        >
+            <a href="/"><h1 class="text-xl font-main">SuperApp by ZHSLN</h1></a>
+        </div>
+        <!-- Left part -->
+        <nav
+            class="w-full md:w-1/3 font-second mb-4 md:mb-0 order-2 md:order-1"
+        >
+            <ul
+                class="flex flex-wrap justify-center md:justify-start space-x-2 md:space-x-4"
+            >
+                <li class="mb-2 md:mb-0">
+                    <a href="/bmi" class="hover:text-gray-300"
+                        >BMI Calculator</a
+                    >
+                </li>
+                <li class="mb-2 md:mb-0">
+                    <a href="/qr" class="hover:text-gray-300"
+                        >QR Code Generator</a
+                    >
+                </li>
+                <li class="mb-2 md:mb-0">
+                    <a href="/email" class="hover:text-gray-300">Send Email</a>
+                </li>
+                <li class="mb-2 md:mb-0">
+                    <a href="/weather" class="hover:text-gray-300"
+                        >Weather App</a
+                    >
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Right part -->
+        <div
+            id="user-info"
+            class="w-full md:w-1/3 flex justify-center md:justify-end font-second order-3"
+        ></div>
+    </div>
+</header>
+
+<script src="/js/header.js"></script>
+
+<style>
+    @media (max-width: 768px) {
+        .group:hover > div,
+        .group.active > div {
+            display: block;
+            position: static;
+            box-shadow: none;
+        }
+    }
+</style>

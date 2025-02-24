@@ -1,0 +1,115 @@
+<div
+    class="flex min-h-screen flex-col justify-center items-center bg-gradient-to-br from-indigo-500 to-purple-600 p-4"
+>
+    <div class="text-center mb-12">
+        <h1
+            class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-main text-white mb-8 animate-fade-in-down"
+        >
+            WELCOME!
+        </h1>
+        <p
+            class="text-xl sm:text-2xl font-second text-indigo-100 max-w-2xl mx-auto"
+        >
+            All projects in one.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl mx-auto">
+        <a
+            href="/bmi"
+            class="font-second text-xl py-8 px-6 rounded-xl shadow-lg flex flex-col items-center justify-center text-center bg-white text-indigo-600 hover:bg-indigo-100 transition-colors duration-300 h-full"
+        >
+            <svg
+                class="w-10 h-10 mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+            </svg>
+            BMI Calculator
+        </a>
+        <a
+            href="/qr"
+            class="font-second text-xl py-8 px-6 rounded-xl shadow-lg flex flex-col items-center justify-center text-center bg-white text-indigo-600 hover:bg-indigo-100 transition-colors duration-300 h-full"
+        >
+            <svg
+                class="w-10 h-10 mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+                ></path>
+            </svg>
+            QR Code Generator
+        </a>
+        <a
+            href="/email"
+            class="font-second text-xl py-8 px-6 rounded-xl shadow-lg flex flex-col items-center justify-center text-center bg-white text-indigo-600 hover:bg-indigo-100 transition-colors duration-300 h-full"
+        >
+            <svg
+                class="w-10 h-10 mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+            </svg>
+            Email Sender
+        </a>
+        <a
+            href="/weather"
+            class="font-second text-xl py-8 px-6 rounded-xl shadow-lg flex flex-col items-center justify-center text-center bg-white text-indigo-600 hover:bg-indigo-100 transition-colors duration-300 h-full"
+        >
+            <svg
+                class="w-10 h-10 mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                ></path>
+            </svg>
+            Weather App
+        </a>
+    </div>
+</div>
+
+<style>
+    .animate-fade-in-down {
+        animation: fadeInDown 1s ease-out;
+    }
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

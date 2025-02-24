@@ -1,0 +1,97 @@
+<div
+    class="bg-gradient-to-br from-gray-900 to-black text-slate-200 min-h-screen p-4 sm:p-8"
+>
+    <div class="max-w-7xl mx-auto space-y-8">
+        <!-- App name and Form -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="bg-zinc-900 rounded-xl shadow-lg p-6">
+                <h1
+                    class="font-main text-3xl sm:text-4xl text-center text-indigo-400"
+                >
+                    City Weather, Time & Country Info
+                </h1>
+            </div>
+            <div class="bg-zinc-900 rounded-xl shadow-lg p-6">
+                <form
+                    id="weatherForm"
+                    class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 font-second"
+                >
+                    <input
+                        type="text"
+                        id="cityInput"
+                        placeholder="Enter a city name"
+                        required
+                        class="w-full sm:w-2/3 h-12 px-4 rounded-lg bg-zinc-800 text-slate-200 border border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <button
+                        type="submit"
+                        class="w-full sm:w-auto h-12 px-6 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition duration-300 ease-in-out"
+                    >
+                        Get Weather
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- City Name, Country code and flag -->
+        <div
+            id="cityNameDiv"
+            class="grid grid-cols-1 sm:grid-cols-3 gap-6 font-main invisible"
+        >
+            <div
+                class="bg-zinc-900 rounded-xl shadow-lg p-6 flex items-center justify-center"
+            >
+                <h2
+                    id="cityName"
+                    class="text-3xl sm:text-4xl lg:text-5xl text-center"
+                ></h2>
+            </div>
+            <div
+                class="bg-zinc-900 rounded-xl shadow-lg p-6 flex items-center justify-center"
+            >
+                <h2
+                    id="countryCode"
+                    class="text-4xl sm:text-5xl lg:text-6xl"
+                ></h2>
+            </div>
+            <div
+                id="flag"
+                class="bg-zinc-900 rounded-xl shadow-lg flex justify-center items-center p-4"
+            ></div>
+        </div>
+
+        <!-- Map and Results -->
+        <div
+            id="resultDiv"
+            class="grid grid-cols-1 lg:grid-cols-3 gap-6 font-second invisible"
+        >
+            <div
+                id="map"
+                class="lg:col-span-2 rounded-xl h-[50vh] lg:h-[70vh] bg-zinc-900 shadow-lg"
+            ></div>
+            <div class="space-y-6">
+                <div
+                    id="weatherResult"
+                    class="bg-zinc-900 rounded-xl shadow-lg p-6"
+                ></div>
+                <div
+                    id="timezoneResult"
+                    class="bg-zinc-900 rounded-xl shadow-lg p-6"
+                ></div>
+                <div
+                    id="countryResult"
+                    class="bg-zinc-900 rounded-xl shadow-lg p-6"
+                ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.YANDEX_API_KEY = "<%= YANDEX_API_KEY %>";
+</script>
+<script
+    src="https://api-maps.yandex.ru/2.1/?apikey=<%= YANDEX_API_KEY %>&lang=en_US"
+    type="text/javascript"
+></script>
+<script src="/js/weather.js"></script>
