@@ -13,14 +13,22 @@ exports.getAdminPanel = async (req, res) => {
 exports.searchUsers = async (req, res) => {
     try {
         const { query } = req.query;
+        if (!query || query.length < 2) {
+            return res
+                .status(400)
+                .json({
+                    message: "Search query must be at least 2 characters long",
+                });
+        }
         const users = await User.find({
             $or: [
-                { _id: { $regex: query, $options: 'i' } },
-                { username: { $regex: query, $options: 'i' } }
-            ]
-        }, "-password");
+                { username: { $regex: query, $options: "i" } },
+                { _id: query.match(/^[0-9a-fA-F]{24}$/) ? query : null },
+            ],
+        });
         res.json(users);
     } catch (error) {
+        console.error("Error searching users:", error);
         res.status(500).json({ message: "Error searching users" });
     }
 };
@@ -93,5 +101,14 @@ exports.deleteUser = async (req, res) => {
             message: "Error deleting user",
             error: error.message,
         });
+    }
+};
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find({}, "-password");
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching users" });
     }
 };

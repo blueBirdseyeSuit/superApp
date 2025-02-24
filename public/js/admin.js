@@ -1,63 +1,84 @@
 document.addEventListener("DOMContentLoaded", () => {
     const userForm = document.getElementById("userForm");
     const userList = document.getElementById("userList");
+    const searchForm = document.getElementById("searchForm");
 
+    if (!userForm || !userList || !searchForm) {
+        console.error("One or more required elements not found");
+        return;
+    }
     userForm.addEventListener("submit", handleUserFormSubmit);
-    userList.addEventListener("click", handleUserAction);
-    searchInput.addEventListener("input", debounce(handleSearch, 300));
+    searchForm.addEventListener("submit", handleSearch);
+    fetchAllUsers();
 });
 
 async function handleSearch(event) {
-    const query = event.target.value;
-    if (query.length < 2) return;
+    event.preventDefault();
+    const query = document.getElementById("searchInput").value.trim();
 
     try {
-        const response = await fetch(`/admin/search?query=${encodeURIComponent(query)}`);
+        let response;
+        if (query.length === 0) {
+            // If the search input is empty, fetch all users
+            response = await fetch("/admin/users");
+        } else {
+            // If there's a search query, use the search endpoint
+            response = await fetch(
+                `/admin/search?query=${encodeURIComponent(query)}`
+            );
+        }
+        console.log("Search response status:", response.status);
         if (response.ok) {
             const users = await response.json();
+            console.log("Search results:", users);
             updateUserList(users);
         } else {
-            showMessage('Error searching users', 'error');
+            const errorData = await response.json();
+            console.error("Search error:", errorData);
+            showMessage(errorData.message || "Error searching users", "error");
         }
     } catch (error) {
-        console.error('Error searching users:', error);
-        showMessage('Error searching users', 'error');
+        console.error("Error searching users:", error);
+        showMessage("Error searching users: " + error.message, "error");
     }
 }
 
 function updateUserList(users) {
-    const userList = document.querySelector('#userList tbody');
-    userList.innerHTML = '';
-    users.forEach(user => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${user._id}</td>
-            <td>${user.username}</td>
-            <td>${user.role}</td>
-            <td>${new Date(user.createdAt).toLocaleDateString()}</td>
-            <td>
-                <button class="edit-user bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" data-id="${user._id}">
-                    Edit
-                </button>
-                <button class="delete-user bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" data-id="${user._id}">
-                    Delete
-                </button>
-            </td>
-        `;
+    const userList = document.querySelector("#userList tbody");
+    if (!userList) {
+        console.error("User list table body not found");
+        return;
+    }
+    userList.innerHTML = "";
+    if (users.length === 0) {
+        const row = document.createElement("tr");
+        row.innerHTML =
+            '<td colspan="5" class="text-center">No users found</td>';
         userList.appendChild(row);
-    });
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+    } else {
+        users.forEach((user) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td class="px-4 py-2 text-left">${user._id}</td>
+                <td class="px-4 py-2 text-left">${user.username}</td>
+                <td class="px-4 py-2 text-left">${user.role}</td>
+                <td class="px-4 py-2 text-left">${new Date(user.createdAt).toLocaleDateString()}</td>
+                <td class="px-4 py-2 text-left">
+                    <button class="edit-user bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" data-id="${
+                        user._id
+                    }">
+                        Edit
+                    </button>
+                    <button class="delete-user bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" data-id="${
+                        user._id
+                    }">
+                        Delete
+                    </button>
+                </td>
+            `;
+            userList.appendChild(row);
+        });
+    }
 }
 
 async function handleUserFormSubmit(event) {
@@ -66,7 +87,7 @@ async function handleUserFormSubmit(event) {
     const userData = Object.fromEntries(formData.entries());
 
     try {
-        const response = await fetch("/admin/users", {
+        const response = await fetch("/admin/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -286,4 +307,20 @@ function showMessage(message, type) {
     setTimeout(() => {
         messageElement.style.display = "none";
     }, 3000);
+}
+async function fetchAllUsers() {
+    try {
+        const response = await fetch("/admin/users");
+        if (response.ok) {
+            const users = await response.json();
+            updateUserList(users);
+        } else {
+            const errorData = await response.json();
+            console.error("Error fetching users:", errorData);
+            showMessage(errorData.message || "Error fetching users", "error");
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        showMessage("Error fetching users: " + error.message, "error");
+    }
 }

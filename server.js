@@ -9,7 +9,7 @@ const banner = `
 ........::..:::::..:::......:::........::..::::..::
 `;
 
-require("dotenv").config();
+require('dotenv').config({ path: '../.env' });
 const express = require("express");
 const expressLayout = require("express-ejs-layouts");
 const authRoutes = require("./routes/authRoutes");

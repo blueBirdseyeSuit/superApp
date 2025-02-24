@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     userInfo.innerHTML = `
                         <div class="relative group">
                             <span class="cursor-pointer">Welcome, ${data.username}</span>
-                            <div class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 hidden group-hover:block transition-all duration-300 ease-in-out">
+                            <div class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 hidden transition-all duration-300 ease-in-out" id="userDropdown">
                                 ${adminLink}
                                 <a href="#" id="signout" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100">Sign out</a>
                             </div>
@@ -24,19 +24,31 @@ document.addEventListener("DOMContentLoaded", function () {
                         .getElementById("signout")
                         .addEventListener("click", handleLogout);
 
-                    // Add hover functionality with delay
-                    const userDropdown = userInfo.querySelector(".group");
+                    const userDropdownTrigger =
+                        userInfo.querySelector(".group");
+                    const userDropdownMenu =
+                        document.getElementById("userDropdown");
                     let timeoutId;
 
-                    userDropdown.addEventListener("mouseenter", () => {
+                    userDropdownTrigger.addEventListener("mouseenter", () => {
                         clearTimeout(timeoutId);
-                        userDropdown.classList.add("active");
+                        userDropdownMenu.classList.remove("hidden");
                     });
 
-                    userDropdown.addEventListener("mouseleave", () => {
+                    userDropdownTrigger.addEventListener("mouseleave", () => {
                         timeoutId = setTimeout(() => {
-                            userDropdown.classList.remove("active");
-                        }, 300); // 300ms delay before hiding
+                            userDropdownMenu.classList.add("hidden");
+                        }, 300);
+                    });
+
+                    userDropdownMenu.addEventListener("mouseenter", () => {
+                        clearTimeout(timeoutId);
+                    });
+
+                    userDropdownMenu.addEventListener("mouseleave", () => {
+                        timeoutId = setTimeout(() => {
+                            userDropdownMenu.classList.add("hidden");
+                        }, 300);
                     });
                 } else {
                     throw new Error("Not authenticated");

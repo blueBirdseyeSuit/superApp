@@ -22,7 +22,7 @@ function showErrors(messages, options = {}) {
     container.className = className;
 
     const messageArray = Array.isArray(messages) ? messages : [messages];
-    container.innerHTML = messageArray.map(msg => `<p>${msg}</p>`).join('');
+    container.innerHTML = messageArray.map(msg => `<p class="text-red-500">${msg}</p>`).join('');
     container.style.display = 'block';
 
     if (timeout) {
